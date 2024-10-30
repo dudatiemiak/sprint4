@@ -1,11 +1,8 @@
-package br.com.fiap.main;
+package br.com.fiap;
 
 import br.com.fiap.to.DiagnosticoTO;
-import br.com.fiap.to.OrcamentoTO;
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Teste {
 
