@@ -18,13 +18,11 @@ public class VeiculoTO {
     private String modelo;
     @Positive
     private Integer ano;
-    @NotBlank
-    private String mensagem;
 
     public VeiculoTO() {
     }
 
-    public VeiculoTO(Long id_veiculo, @NotBlank String placa, @NotBlank String tipo, @PositiveOrZero Double quilometragem, @NotBlank String marca, @NotBlank String modelo, @Positive Integer ano, @NotBlank String mensagem) {
+    public VeiculoTO(Long id_veiculo, @NotBlank String placa, @NotBlank String tipo, @PositiveOrZero Double quilometragem, @NotBlank String marca, @NotBlank String modelo, @Positive Integer ano) {
         this.id_veiculo = id_veiculo;
         this.placa = placa;
         this.tipo = tipo;
@@ -32,7 +30,6 @@ public class VeiculoTO {
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
-        this.mensagem = mensagem;
     }
 
     public Long getId_veiculo() {return id_veiculo;}
@@ -88,8 +85,4 @@ public class VeiculoTO {
         this.ano = ano;
     }
 
-    @NotBlank
-    public String getMensagem() {return mensagem;}
-
-    public void setMensagem(@NotBlank String mensagem) {this.mensagem = mensagem;}
 }

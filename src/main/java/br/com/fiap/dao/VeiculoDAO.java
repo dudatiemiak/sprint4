@@ -24,7 +24,6 @@ public class VeiculoDAO extends Repository {
                     veiculo.setMarca(rs.getString("marca"));
                     veiculo.setModelo(rs.getString("modelo"));
                     veiculo.setAno(rs.getInt("ano"));
-                    veiculo.setMensagem(rs.getString("mensagem"));
                     veiculos.add(veiculo);
                 }
             }else {
@@ -54,8 +53,6 @@ public class VeiculoDAO extends Repository {
                     veiculo.setMarca(rs.getString("marca"));
                     veiculo.setModelo(rs.getString("modelo"));
                     veiculo.setAno(rs.getInt("ano"));
-                    veiculo.setMensagem(rs.getString("mensagem"));
-
                 }
             }
         } catch (SQLException e) {
@@ -67,7 +64,7 @@ public class VeiculoDAO extends Repository {
     }
 
     public VeiculoTO save(VeiculoTO veiculo) {
-        String sql = "INSERT INTO ddd_veiculos (placa, tipo, quilometragem, marca, modelo, ano, mensagem) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO ddd_veiculos (placa, tipo, quilometragem, marca, modelo, ano) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
             ps.setString(1, veiculo.getPlaca());
             ps.setString(2, veiculo.getTipo());
@@ -75,8 +72,6 @@ public class VeiculoDAO extends Repository {
             ps.setString(4, veiculo.getMarca());
             ps.setString(5, veiculo.getModelo());
             ps.setInt(6, veiculo.getAno());
-            ps.setString(7, veiculo.getMensagem());
-
             if (ps.executeUpdate() > 0) {
                 return veiculo;
             }
@@ -102,7 +97,7 @@ public class VeiculoDAO extends Repository {
     }
 
     public VeiculoTO update(VeiculoTO veiculo) {
-        String sql = "UPDATE ddd_veiculos SET placa = ?, tipo = ?, quilometragem = ?, marca = ?, modelo = ?, ano = ?, mensagem = ? WHERE id_veiculo = ?";
+        String sql = "UPDATE ddd_veiculos SET placa = ?, tipo = ?, quilometragem = ?, marca = ?, modelo = ?, ano = ? WHERE id_veiculo = ?";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
             ps.setString(1, veiculo.getPlaca());
             ps.setString(2, veiculo.getTipo());
@@ -110,8 +105,7 @@ public class VeiculoDAO extends Repository {
             ps.setString(4, veiculo.getMarca());
             ps.setString(5, veiculo.getModelo());
             ps.setInt(6, veiculo.getAno());
-            ps.setString(7, veiculo.getMensagem());
-            ps.setLong(8, veiculo.getId_veiculo());
+            ps.setLong(7, veiculo.getId_veiculo());
 
             if (ps.executeUpdate() > 0) {
                 return veiculo;
