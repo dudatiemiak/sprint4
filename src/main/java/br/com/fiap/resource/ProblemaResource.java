@@ -1,7 +1,7 @@
 package br.com.fiap.resource;
 
-import br.com.fiap.bo.VeiculoBO;
-import br.com.fiap.to.VeiculoTO;
+import br.com.fiap.bo.ProblemaBO;
+import br.com.fiap.to.ProblemaTO;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -10,13 +10,13 @@ import jakarta.ws.rs.core.Response;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-@Path("/veiculo")
-public class VeiculoResource {
-    private VeiculoBO veiculoBO = new VeiculoBO();
+@Path("/problema")
+public class ProblemaResource {
+    private ProblemaBO problemaBO = new ProblemaBO();
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response findAll() {
-        ArrayList<VeiculoTO> resultado = veiculoBO.findAll();
+        ArrayList<ProblemaTO> resultado = problemaBO.findAll();
         Response.ResponseBuilder response = null;
 
         if (resultado != null) {
@@ -29,10 +29,10 @@ public class VeiculoResource {
     }
 
     @GET
-    @Path("/{id_veiculo}")
+    @Path("/{problema}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response findByCodigo(@PathParam("id_veiculo") Long id_veiculo) {
-        VeiculoTO resultado = veiculoBO.findByCodigo(id_veiculo);
+    public Response findByCodigo(@PathParam("problema") String problema) {
+        ProblemaTO resultado = problemaBO.findByCodigo(problema);
 
         Response.ResponseBuilder response = null;
 
@@ -48,8 +48,8 @@ public class VeiculoResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response save(@Valid VeiculoTO veiculo) {
-        VeiculoTO resultado = veiculoBO.save(veiculo);
+    public Response save(@Valid ProblemaTO prob) {
+        ProblemaTO resultado = problemaBO.save(prob);
 
         Response.ResponseBuilder response = null;
 
@@ -62,26 +62,12 @@ public class VeiculoResource {
         return  response.build();
     }
 
-    //método que vai responder ao verbo delete
-    //só o delete vai ser diferente pq ele retorna verdadeiro ou falso
-    @DELETE
-    @Path("/{id_veiculo}")
-    public Response delete(@PathParam("id_veiculo") Long id_veiculo){
-        Response.ResponseBuilder response = null;
-        if(veiculoBO.delete(id_veiculo)){
-            response = Response.status(204); //204 é o NO CONTENT - porque depois que eu apaguei não tem mais conteúdo, ou seja, deu certo.
-        }else{
-            response = Response.status(404); //404 NOT FOUND
-        }
-        return response.build();
-    }
-
     @PUT
-    @Path("/{id_veiculo}")
+    @Path("/{problema}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response update(@Valid VeiculoTO veiculo, @PathParam("id_veiculo") Long id_veiculo) throws SQLException {
-        veiculo.setId_veiculo(id_veiculo);
-        VeiculoTO resultado = veiculoBO.update(veiculo);
+    public Response update(@Valid ProblemaTO prob, @PathParam("problema") String problema) throws SQLException {
+        prob.setProblema(problema);
+        ProblemaTO resultado = problemaBO.update(prob);
         Response.ResponseBuilder response = null;
         if (resultado != null){
             response = Response.created(null); //201 CREATED
