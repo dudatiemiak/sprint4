@@ -14,7 +14,6 @@ public class OrcamentoTO {
         inicializarPrecos();
     }
 
-    // Método para inicializar os preços
     private void inicializarPrecos() {
         // Preços de procedimentos
         precosProcedimentos.put("Inspecionar e testar o sistema de ignição.", 250.0f);
@@ -74,7 +73,6 @@ public class OrcamentoTO {
 
     }
 
-    // Método para calcular o orçamento total
     public float calcularOrcamento(List<String> procedimentos, List<String> pecas) {
         float total = 0.0f;
 
@@ -89,7 +87,6 @@ public class OrcamentoTO {
         return total;
     }
 
-    // Método para obter o orçamento detalhado
     public Map<String, Float> calcularOrcamentoDetalhado(List<String> procedimentos, List<String> pecas) {
         Map<String, Float> detalhes = new HashMap<>();
 
@@ -104,7 +101,6 @@ public class OrcamentoTO {
         return detalhes;
     }
 
-    // Métodos auxiliares para obter os preços
     private float obterPrecoProcedimento(String procedimento) {
         return precosProcedimentos.getOrDefault(procedimento, 0.0f);
     }
