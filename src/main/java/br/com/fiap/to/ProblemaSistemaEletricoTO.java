@@ -1,5 +1,6 @@
 package br.com.fiap.to;
 
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 
 public class ProblemaSistemaEletricoTO {
@@ -7,13 +8,13 @@ public class ProblemaSistemaEletricoTO {
     private String problema_se;
     @NotBlank
     private String diagnostico;
-    @NotBlank
+    @NotNull
     private Double orcamento;
 
     public ProblemaSistemaEletricoTO() {
     }
 
-    public ProblemaSistemaEletricoTO(@NotBlank String problema_se, @NotBlank String diagnostico, @NotBlank Double orcamento) {
+    public ProblemaSistemaEletricoTO(@NotBlank String problema_se, @NotBlank String diagnostico, @NotNull Double orcamento) {
         this.problema_se = problema_se;
         this.diagnostico = diagnostico;
         this.orcamento = orcamento;
@@ -35,11 +36,11 @@ public class ProblemaSistemaEletricoTO {
         this.diagnostico = diagnostico;
     }
 
-    public @NotBlank Double getOrcamento() {
+    public @NotNull Double getOrcamento() {
         return orcamento;
     }
 
-    public void setOrcamento(@NotBlank Double orcamento) {
+    public void setOrcamento(@NotNull Double orcamento) {
         this.orcamento = orcamento;
     }
 }
