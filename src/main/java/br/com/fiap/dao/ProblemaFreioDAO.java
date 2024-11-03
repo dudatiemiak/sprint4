@@ -55,13 +55,13 @@ public class ProblemaFreioDAO extends Repository{
         return prob;
     }
 
-    public ProblemaFreioTO save(ProblemaFreioTO problema_freio) {
+    public ProblemaFreioTO save(ProblemaFreioTO prob) {
         String sql = "INSERT INTO ddd_problemas_freio (diagnostico, orcamento) VALUES (?, ?)";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
-            ps.setString(1, problema_freio.getDiagnostico());
-            ps.setDouble(2, problema_freio.getOrcamento());
+            ps.setString(1, prob.getDiagnostico());
+            ps.setDouble(2, prob.getOrcamento());
             if (ps.executeUpdate() > 0) {
-                return problema_freio;
+                return prob;
             }
         } catch (SQLException e) {
             System.out.println("Erro ao salvar: " + e.getMessage());
@@ -71,15 +71,15 @@ public class ProblemaFreioDAO extends Repository{
         return null;
     }
 
-    public ProblemaFreioTO update(ProblemaFreioTO problema_freio) {
+    public ProblemaFreioTO update(ProblemaFreioTO prob) {
         String sql = "UPDATE ddd_problemas_freio SET diagnostico = ?, orcamento = ? WHERE problema_freio = ?";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
-            ps.setString(1, problema_freio.getDiagnostico());
-            ps.setDouble(2, problema_freio.getOrcamento());
-            ps.setString(3, problema_freio.getProblema_freio());
+            ps.setString(1, prob.getDiagnostico());
+            ps.setDouble(2, prob.getOrcamento());
+            ps.setString(3, prob.getProblema_freio());
 
             if (ps.executeUpdate() > 0) {
-                return problema_freio;
+                return prob;
             }
         } catch (SQLException e) {
             System.out.println("Erro ao atualizar: " + e.getMessage());

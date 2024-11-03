@@ -55,13 +55,13 @@ public class ProblemaMotorDAO extends Repository{
         return prob;
     }
 
-    public ProblemaMotorTO save(ProblemaMotorTO problema_motor) {
+    public ProblemaMotorTO save(ProblemaMotorTO prob) {
         String sql = "INSERT INTO ddd_problemas_motor (diagnostico, orcamento) VALUES (?, ?)";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
-            ps.setString(1, problema_motor.getDiagnostico());
-            ps.setDouble(2, problema_motor.getOrcamento());
+            ps.setString(1, prob.getDiagnostico());
+            ps.setDouble(2, prob.getOrcamento());
             if (ps.executeUpdate() > 0) {
-                return problema_motor;
+                return prob;
             }
         } catch (SQLException e) {
             System.out.println("Erro ao salvar: " + e.getMessage());
@@ -71,15 +71,15 @@ public class ProblemaMotorDAO extends Repository{
         return null;
     }
 
-    public ProblemaMotorTO update(ProblemaMotorTO problema_motor) {
+    public ProblemaMotorTO update(ProblemaMotorTO prob) {
         String sql = "UPDATE ddd_problemas_motor SET diagnostico = ?, orcamento = ? WHERE problema_motor = ?";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
-            ps.setString(1, problema_motor.getDiagnostico());
-            ps.setDouble(2, problema_motor.getOrcamento());
-            ps.setString(3, problema_motor.getProblema_motor());
+            ps.setString(1, prob.getDiagnostico());
+            ps.setDouble(2, prob.getOrcamento());
+            ps.setString(3, prob.getProblema_motor());
 
             if (ps.executeUpdate() > 0) {
-                return problema_motor;
+                return prob;
             }
         } catch (SQLException e) {
             System.out.println("Erro ao atualizar: " + e.getMessage());

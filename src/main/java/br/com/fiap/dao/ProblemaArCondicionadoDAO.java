@@ -55,13 +55,13 @@ public class ProblemaArCondicionadoDAO extends Repository{
         return prob;
     }
 
-    public ProblemaArCondicionadoTO save(ProblemaArCondicionadoTO problema_ar) {
+    public ProblemaArCondicionadoTO save(ProblemaArCondicionadoTO prob) {
         String sql = "INSERT INTO ddd_problemas_ar (diagnostico, orcamento) VALUES (?, ?)";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
-            ps.setString(1, problema_ar.getDiagnostico());
-            ps.setDouble(2, problema_ar.getOrcamento());
+            ps.setString(1, prob.getDiagnostico());
+            ps.setDouble(2, prob.getOrcamento());
             if (ps.executeUpdate() > 0) {
-                return problema_ar;
+                return prob;
             }
         } catch (SQLException e) {
             System.out.println("Erro ao salvar: " + e.getMessage());
@@ -71,15 +71,15 @@ public class ProblemaArCondicionadoDAO extends Repository{
         return null;
     }
 
-    public ProblemaArCondicionadoTO update(ProblemaArCondicionadoTO problema_ar) {
+    public ProblemaArCondicionadoTO update(ProblemaArCondicionadoTO prob) {
         String sql = "UPDATE ddd_problemas_ar SET diagnostico = ?, orcamento = ? WHERE problema_ar = ?";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
-            ps.setString(1, problema_ar.getDiagnostico());
-            ps.setDouble(2, problema_ar.getOrcamento());
-            ps.setString(3, problema_ar.getProblema_ar());
+            ps.setString(1, prob.getDiagnostico());
+            ps.setDouble(2, prob.getOrcamento());
+            ps.setString(3, prob.getProblema_ar());
 
             if (ps.executeUpdate() > 0) {
-                return problema_ar;
+                return prob;
             }
         } catch (SQLException e) {
             System.out.println("Erro ao atualizar: " + e.getMessage());

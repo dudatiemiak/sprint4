@@ -55,13 +55,13 @@ public class ProblemaTransmissaoDAO extends Repository{
         return prob;
     }
 
-    public ProblemaTransmissaoTO save(ProblemaTransmissaoTO problema_transmissao) {
+    public ProblemaTransmissaoTO save(ProblemaTransmissaoTO prob) {
         String sql = "INSERT INTO ddd_problemas_transmissao (diagnostico, orcamento) VALUES (?, ?)";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
-            ps.setString(1, problema_transmissao.getDiagnostico());
-            ps.setDouble(2, problema_transmissao.getOrcamento());
+            ps.setString(1, prob.getDiagnostico());
+            ps.setDouble(2, prob.getOrcamento());
             if (ps.executeUpdate() > 0) {
-                return problema_transmissao;
+                return prob;
             }
         } catch (SQLException e) {
             System.out.println("Erro ao salvar: " + e.getMessage());
@@ -71,15 +71,15 @@ public class ProblemaTransmissaoDAO extends Repository{
         return null;
     }
 
-    public ProblemaTransmissaoTO update(ProblemaTransmissaoTO problema_transmissao) {
+    public ProblemaTransmissaoTO update(ProblemaTransmissaoTO prob) {
         String sql = "UPDATE ddd_problemas_transmissao SET diagnostico = ?, orcamento = ? WHERE problema_transmissao = ?";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
-            ps.setString(1, problema_transmissao.getDiagnostico());
-            ps.setDouble(2, problema_transmissao.getOrcamento());
-            ps.setString(3, problema_transmissao.getProblema_transmissao());
+            ps.setString(1, prob.getDiagnostico());
+            ps.setDouble(2, prob.getOrcamento());
+            ps.setString(3, prob.getProblema_transmissao());
 
             if (ps.executeUpdate() > 0) {
-                return problema_transmissao;
+                return prob;
             }
         } catch (SQLException e) {
             System.out.println("Erro ao atualizar: " + e.getMessage());

@@ -55,13 +55,13 @@ public class ProblemaSistemaEletricoDAO extends Repository{
         return prob;
     }
 
-    public ProblemaSistemaEletricoTO save(ProblemaSistemaEletricoTO problema_se) {
+    public ProblemaSistemaEletricoTO save(ProblemaSistemaEletricoTO prob) {
         String sql = "INSERT INTO ddd_problemas_sist_eletrico (diagnostico, orcamento) VALUES (?, ?)";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
-            ps.setString(1, problema_se.getDiagnostico());
-            ps.setDouble(2, problema_se.getOrcamento());
+            ps.setString(1, prob.getDiagnostico());
+            ps.setDouble(2, prob.getOrcamento());
             if (ps.executeUpdate() > 0) {
-                return problema_se;
+                return prob;
             }
         } catch (SQLException e) {
             System.out.println("Erro ao salvar: " + e.getMessage());
@@ -71,15 +71,15 @@ public class ProblemaSistemaEletricoDAO extends Repository{
         return null;
     }
 
-    public ProblemaSistemaEletricoTO update(ProblemaSistemaEletricoTO problema_se) {
+    public ProblemaSistemaEletricoTO update(ProblemaSistemaEletricoTO prob) {
         String sql = "UPDATE ddd_problemas_sist_eletrico SET diagnostico = ?, orcamento = ? WHERE problema_se = ?";
         try (PreparedStatement ps = getConnection().prepareStatement(sql)) {
-            ps.setString(1, problema_se.getDiagnostico());
-            ps.setDouble(2, problema_se.getOrcamento());
-            ps.setString(3, problema_se.getProblema_se());
+            ps.setString(1, prob.getDiagnostico());
+            ps.setDouble(2, prob.getOrcamento());
+            ps.setString(3, prob.getProblema_se());
 
             if (ps.executeUpdate() > 0) {
-                return problema_se;
+                return prob;
             }
         } catch (SQLException e) {
             System.out.println("Erro ao atualizar: " + e.getMessage());
