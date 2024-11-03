@@ -50,6 +50,7 @@ public class ProblemaArCondicionadoResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response save(@Valid ProblemaArCondicionadoTO prob) {
         ProblemaArCondicionadoTO resultado = problemaArCondicionadoBO.save(prob);
+
         Response.ResponseBuilder response = null;
 
         if  (resultado != null) {
